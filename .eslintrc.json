@@ -1,0 +1,19 @@
+{
+  "extends": "@meteorjs/eslint-config-meteor",
+  "rules": {
+    "no-underscore-dangle": 0,
+    "require-jsdoc": ["error", {
+      "require": {
+          "FunctionDeclaration": true,
+          "MethodDefinition": true,
+          "ClassDeclaration": true,
+          "ArrowFunctionExpression": true,
+          "FunctionExpression": true
+      }
+  }]
+  },
+  "env": {
+    "meteor": true,
+    "jasmine": true
+  }
+}
