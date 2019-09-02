@@ -14,6 +14,10 @@ import {
   getAllTickets,
 } from '../controllers/ticketController';
 
+import {
+  addAgency,
+} from '../controllers/agencyController';
+
 if (Meteor.isServer) {
   Router.route('/users', { where: 'server' })
     .get(getUsers)
@@ -33,4 +37,7 @@ if (Meteor.isServer) {
     .get(getTicket)
     .put(updateTicket)
     .delete(deleteTicket);
+
+  Router.route('/agencies', { where: 'server' })
+    .post(addAgency);
 }
