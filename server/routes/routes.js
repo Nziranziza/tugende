@@ -16,6 +16,7 @@ import {
 
 import {
   addAgency,
+  getAllAgencies,
 } from '../controllers/agencyController';
 
 if (Meteor.isServer) {
@@ -39,5 +40,6 @@ if (Meteor.isServer) {
     .delete(deleteTicket);
 
   Router.route('/agencies', { where: 'server' })
-    .post(addAgency);
+    .post(addAgency)
+    .get(getAllAgencies);
 }
