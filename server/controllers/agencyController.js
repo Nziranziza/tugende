@@ -7,8 +7,12 @@ const { SECURITY_KEY } = process.env;
 
 /**
  * @author Daniel
+ *         add a new agency
+ *         accessible by admin
+ * @returns new agency
  */
 export const addAgency = function () {
+  this.response.setHeader('Content-Type', 'application/json');
   const { body } = this.request;
   const { email, phoneNumber } = body;
   const { authorization } = this.request.headers;
@@ -58,7 +62,23 @@ export const addAgency = function () {
 
 /**
  * @author Daniel
+ *         get all agencies
+ *         accessible by everyone
+ * @returns array of agencies
  */
 export const getAllAgencies = function () {
-
+  this.response.setHeader('Content-Type', 'application/json');
+  try {
+    const agencies = agencyCollection.find();
+    this.response.end(JSON.stringify({
+      size: agencies.count(),
+      agencies: agencies.fetch(),
+    }));
+    return;
+  } catch (error) {
+    this.response.writeHead(500);
+    this.response.end(JSON.stringify({
+      message: error.message,
+    }));
+  }
 };
