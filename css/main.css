@@ -1,0 +1,145 @@
+body {
+  background-color: #ffffff;
+  font-family: "SF UI Display Thin";
+}
+.top-logo {
+  height: 3em;
+}
+.top-signup-btn {
+  border-radius: 0px;
+  height: 3em;
+  background-color: #005979;
+  color: #ffffff;
+}
+.top-change-lang-btn {
+  border-radius: 0px;
+  height: 3em;
+  background-color: #ffffff;
+  color: #005979;
+}
+.top-tugende-label {
+  background-color: #005979;
+  padding-bottom: 5em;
+  padding-top: 5em;
+}
+.tugende-label-image {
+  height: 3em;
+}
+.top-nav-bar {
+  width: 10em;
+}
+.top-nav-bg {
+  background: #ffffff;
+}
+.top-position-sticky {
+  z-index: 1;
+  padding-left: 0;
+  padding-right: 0;
+  background: #ffffff;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+.filter-schedules-top {
+  background: url("../../images/volvobus.png") no-repeat center;
+  background-size: contain;
+  box-shadow: inset 0 0 0 1000px rgba(0, 89, 121, 0.74);
+  padding-top: 10em;
+  padding-bottom: 10em;
+}
+.top-form-padding {
+  padding: 0;
+}
+.top-form-text-holder {
+  border-radius: 0;
+  width: 4.5em;
+  color: #005979;
+  background: #ffffff;
+}
+.top-from-input {
+  border-radius: 0;
+}
+.form-submit-btn {
+  background-color: #00a7ff;
+  color: #ffffff;
+  font-family: "SF UI Display Bold";
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.platform-header-bg {
+  background: #f0f0f0;
+}
+.platform-header-bg > h4,
+.companies-text-label > h4 {
+  font-family: "SF UI Display Bold";
+  font-size: 30px;
+  color: #005979;
+}
+.platform-header-bg > p,
+.companies-text-label > p {
+  color: #939393;
+  font-size: 18px;
+}
+.platform-image {
+  padding: 0;
+}
+.most-popular-bus {
+  background: #f0f0f0;
+}
+.companies-text-label {
+  margin-top: 3em;
+  margin-bottom: 2em;
+}
+
+.bus-companies-logo {
+  padding-left: 10em;
+  padding-right: 10em;
+  margin-bottom: 5em;
+}
+.platform-header-bg-footer {
+  background: #f0f0f0;
+  padding-left: 10em;
+  padding-right: 10em;
+  font-family: "SF UI Display Light";
+  color: #005979;
+}
+@media only screen and (max-width: 800px) {
+  .platform-header-bg-footer {
+    background: #f0f0f0;
+    padding-left: 3em;
+    padding-right: 3em;
+  }
+  .bus-companies-logo {
+    padding-left: 5em;
+    padding-right: 5em;
+    margin-bottom: 5em;
+  }
+  .bus-companies-logo > img {
+    margin-bottom: 2em;
+  }
+}
+.label-visit > div > label {
+  color: #939393;
+}
+.contact-us-info > p {
+  margin: 0;
+}
+.contacts-info {
+  font-family: "SF UI Display Semibold";
+}
+.contact-us-form {
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid #005979;
+
+  background: #f0f0f0;
+}
+.contact-us-form::-webkit-input-placeholder {
+  color: #005979;
+}
+.contact-us-btn {
+  height: 3em;
+  background: #005979;
+  color: #f0f0f0;
+  font-family: "SF UI Display Semibold";
+}
