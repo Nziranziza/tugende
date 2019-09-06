@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" class="fit-screen">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <title>Document</title>
+  </head>
+  <body class="fit-screen">
+    <div class="container-fluid fit-screen">
+      <div class="row fit-screen">
+        <div
+          class="col-md-6 fit-screen login-logo justify-content-center align-items-center"
+          style="display:flex;"
+        >
+          <!-- for logo and blue bg -->
+          <img src="image/tugende.png" alt="" width="20%" />
+        </div>
+        <div
+          class="col-md-6 fit-screen justify-content-center align-items-center"
+          style="display:flex;"
+        >
+          <!-- login stuffs -->
+          <form action="dashboard.html" class="">
+            <p class="login-caption">
+              Welcome back TUGENDE admin! Please login to your account.
+            </p>
+            <div class="form-group mt-5">
+              <input
+                type="text"
+                class="form-control login-border"
+                placeholder="Username"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="password"
+                class="form-control login-border"
+                placeholder="Password"
+              />
+            </div>
+            <div class="row mt-3">
+              <div class="col-6">
+                <div class="form-group">
+                  <div class="custom-control custom-checkbox mr-sm-2">
+                    <input
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="customControlAutosizing"
+                    />
+                    <label
+                      class="custom-control-label"
+                      for="customControlAutosizing"
+                      >Remember me</label
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 text-right">
+                <label for="">Forgot password</label>
+              </div>
+            </div>
+            <div class="row mt-5">
+              <div class="col-6">
+                <button
+                  type="submit"
+                  class="btn login-submit"
+                  style="width:80%"
+                >
+                  Login
+                </button>
+              </div>
+              <div class="col-6 text-right">
+                <button
+                  type="button"
+                  class="btn login-signup"
+                  style="width:80%"
+                >
+                  Sign Up
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

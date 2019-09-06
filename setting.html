@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" class="fit-screen">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <title>Document</title>
+  </head>
+  <body class="fit-screen">
+    <div class="container-fluid fit-screen">
+      <div class="row fit-screen">
+        <div
+          class="col-md-2 login-logo fit-screen sidebar"
+          style="padding: 0px;"
+        >
+          <!-- sidebar stuffs -->
+          <div
+            class="align-items-center justify-content-center mt-5 mb-5"
+            style="display:flex;"
+          >
+            <img src="image/tugende.png" alt="" width="30%" />
+          </div>
+
+          <div class="list-group">
+            <a href="home.html" class="list-group-item list-group-item-action">
+              <i class="fa fa-home"></i> Home</a
+            >
+            <a
+              href="dashboard.html"
+              class="list-group-item list-group-item-action"
+            >
+              <i class="fa fa-bar-chart-o"></i> Dashboard</a
+            >
+            <a href="#" class="list-group-item list-group-item-action">
+              <i class="fa fa-envelope-o"></i> Inbox</a
+            >
+            <a
+              href="station.html"
+              class="list-group-item list-group-item-action"
+            >
+              <i class="fa fa-user-o"></i> Stations</a
+            >
+            <a href="#" class="list-group-item list-group-item-action">
+              <i class="fa fa-comments"></i> Chat Room</a
+            >
+            <a href="#" class="list-group-item list-group-item-action">
+              <i class="fa fa-calendar"></i> Calendar</a
+            >
+            <a
+              href="schedules.html"
+              class="list-group-item list-group-item-action"
+            >
+              <i class="fa fa-bus"></i> Bus schedules</a
+            >
+            <a href="#" class="list-group-item list-group-item-action active">
+              <i class="fa fa-gear"></i> Settings</a
+            >
+          </div>
+        </div>
+        <div class="col-md-12 fit-screen main" style="padding: 0px;">
+          <!-- content aside sidebar -->
+          <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <input
+                class="form-control mr-sm-2 navbar-search"
+                style="width:30%"
+                type="search"
+                placeholder="Search transactions, invoices or help"
+                aria-label="Search"
+              />
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <i class="fa fa-comments"></i>
+                  </a>
+                </li>
+                <li class="nav-item border-right">
+                  <a class="nav-link" href="#"><i class="fa fa-bell"></i></a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Admin
+                  </a>
+                  <div
+                    class="dropdown-menu dropdown-menu-right"
+                    aria-labelledby="navbarDropdown"
+                  >
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12 mt-4">
+                <div class="card">
+                  <div class="card-header">
+                    Settings
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <h5 class="border-bottom">Manage Password</h5>
+                        <form action="" class="mt-3">
+                          <div class="form-group">
+                            <label for="password">Current password</label>
+                            <input
+                              type="password"
+                              class="form-control"
+                              placeholder="Enter current password"
+                            />
+                          </div>
+                          <div class="form-group">
+                            <label for="newpassword">New Password</label>
+                            <input
+                              type="password"
+                              class="form-control"
+                              placeholder="Enter new password"
+                            />
+                          </div>
+                          <div class="form-group">
+                            <label for="confirmpassword"
+                              >Confirm password</label
+                            >
+                            <input
+                              type="password"
+                              class="form-control"
+                              placeholder="Confirm password"
+                            />
+                          </div>
+                          <button type="submit" class="btn">
+                            Change Password
+                          </button>
+                        </form>
+                      </div>
+                      <div class="col-md-6">
+                        <h5 class="border-bottom">
+                          Manage Bus operator informations
+                        </h5>
+                        <form action="" class="mt-3">
+                          <div class="form-group">
+                            <label for="location">Location</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              name=""
+                              id=""
+                              placeholder="Enter new Location"
+                            />
+                          </div>
+                          <div class="form-group">
+                            <label for="email">Email</label>
+                            <input
+                              type="email"
+                              class="form-control"
+                              placeholder="Enter new Email"
+                            />
+                          </div>
+                          <div class="form-group">
+                            <label for="phoneNumber">Phone number</label>
+                            <input
+                              type="number"
+                              class="form-control"
+                              name=""
+                              id=""
+                              placeholder="Enter new phone number"
+                            />
+                          </div>
+                          <button type="submit" class="btn">
+                            Save Changes
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
