@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css//main.css" />
+    <link rel="stylesheet" href="css/sfont/style.css" />
+    <link rel="shortcut icon" href="images/icontu.png" type="image/x-icon" />
+    <title>Tugende</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div
+          class="col-md-12 header-account-system align-content-center justify-content-center"
+        >
+          <a href="index.html"
+            ><img src="images/tugende.png" alt="" height="30em"
+          /></a>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 holder-account-management mt-5">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item col-md-6 border-tab-header">
+              <a
+                class="nav-link text-center active"
+                id="home-tab"
+                data-toggle="tab"
+                href="#home"
+                role="tab"
+                aria-controls="home"
+                aria-selected="true"
+                >SIGN UP</a
+              >
+            </li>
+            <li class="nav-item col-md-6 border-tab-header">
+              <a
+                class="nav-link text-center"
+                id="profile-tab"
+                data-toggle="tab"
+                href="#profile"
+                role="tab"
+                aria-controls="profile"
+                aria-selected="false"
+                >SIGN IN</a
+              >
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div
+              class="tab-pane fade show active"
+              id="home"
+              role="tabpanel"
+              aria-labelledby="home-tab"
+            >
+              <div class="container-fluid mt-5 pl-5 pr-5 mb-5">
+                <form class="form-sign-in">
+                  <h3 class="text-center form-title-tugende mb-3">
+                    Welcome to Tugende platform!<br />
+                    Create your account
+                  </h3>
+                  <p class="text-center mb-5">
+                    Save time by buying and booking ticket using tugende
+                  </p>
+                  <div class="form-group mb-4 col-md-12 ml-0 pl-0 pr-0 row">
+                    <input
+                      type="text"
+                      class="form-control col-md-6"
+                      placeholder="First Name"
+                    />
+                    <div class="col-md-1"></div>
+                    <input
+                      type="text"
+                      name=""
+                      id=""
+                      class="form-control col-md-5"
+                      placeholder="Last Name"
+                    />
+                  </div>
+                  <div class="form-group mb-4">
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      placeholder="Enter email or phone number"
+                    />
+                  </div>
+                  <div class="form-group mb-5">
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="exampleInputPassword1"
+                      placeholder="Password"
+                    />
+                  </div>
+                  <button type="submit" class="btn col-md-12 account-sign-btn">
+                    SIGN UP
+                  </button>
+                </form>
+              </div>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="profile"
+              role="tabpanel"
+              aria-labelledby="profile-tab"
+            >
+              <div class="container-fluid mt-5 pl-5 pr-5 mb-5">
+                <form class="form-sign-in">
+                  <h3 class="text-center form-title-tugende mb-3">
+                    Welcome to Tugende platform!<br />
+                    Sign in to your account
+                  </h3>
+                  <p class="text-center mb-5">
+                    Save time by buying and booking ticket using tugende
+                  </p>
+                  <div class="form-group mb-4">
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      placeholder="Enter email"
+                    />
+                  </div>
+                  <div class="form-group mb-5">
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="exampleInputPassword1"
+                      placeholder="Password"
+                    />
+                  </div>
+                  <button type="submit" class="btn col-md-12 account-sign-btn">
+                    SIGN IN
+                  </button>
+                </form>
+              </div>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="contact"
+              role="tabpanel"
+              aria-labelledby="contact-tab"
+            >
+              ...
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    </div>
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.js"></script>
+  </body>
+</html>
