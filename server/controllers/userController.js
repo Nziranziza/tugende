@@ -4,6 +4,8 @@ import Jwt from 'jsonwebtoken';
 import { userCollection, tokenCollection } from '../collections';
 import { createUser, loginBody } from '../inputValidation';
 import jwtTokenSigner from '../helpers/jwtTokenSigner';
+import emailService from '../helpers/emailServices';
+import { userMessage } from '../helpers/welcomeMessages';
 
 const { SECURITY_KEY } = process.env;
 
@@ -76,50 +78,62 @@ export const getUser = function() {
  */
 export const postUser = async function() {
   const { body } = this.request;
-  const { error } = Joi.validate({ ...body }, createUser);
   this.response.setHeader('Content-Type', 'application/json');
-  if (error) {
-    this.response.writeHead(400);
-    this.response.end(JSON.stringify(error));
-    return;
-  }
-  const {
-    email,
-    username,
-    phoneNumber,
-    password,
-  } = body;
-  const user = userCollection.findOne({ $or: [{ email }, { phoneNumber }, { username }] });
-  if (user) {
-    this.response.writeHead(404);
+  try {
+    const { error } = Joi.validate({ ...body }, createUser);
+    if (error) {
+      this.response.writeHead(400);
+      this.response.end(JSON.stringify(error));
+      return;
+    }
+    const {
+      email,
+      username,
+      phoneNumber,
+      password,
+    } = body;
+    const user = userCollection.findOne({ $or: [{ email }, { phoneNumber }, { username }] });
+    if (user) {
+      this.response.writeHead(409);
+      this.response.end(JSON.stringify({
+        status: 409,
+        message: 'user already exist',
+      }));
+      return;
+    }
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newId = userCollection.insert({
+      email,
+      username,
+      phoneNumber,
+      password: hashedPassword,
+      userType: 'user',
+      active: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
+    const newUser = userCollection.findOne({ _id: newId });
+    const token = jwtTokenSigner(newUser);
+    tokenCollection.insert({
+      userId: newUser._id,
+      token,
+      createdAt: new Date(),
+      status: 'valid',
+    });
+    emailService(userMessage(username), email, 'Verify your email');
+    this.response.writeHead(201);
     this.response.end(JSON.stringify({
-      status: 404,
-      message: 'email already exist',
-      user,
+      message: 'Account created. Please verify your email!',
+      user: newUser,
+      token,
     }));
     return;
+  } catch (err) {
+    this.response.end(JSON.stringify({
+      message: 'something went wrong',
+      error: err,
+    }));
   }
-  const hashedPassword = await bcrypt.hash(password, 10);
-  const newId = userCollection.insert({
-    email,
-    username,
-    phoneNumber,
-    password: hashedPassword,
-    userType: 'user',
-    active: false,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  });
-  this.response.writeHead(201);
-  const newUser = userCollection.findOne({ _id: newId });
-  const token = jwtTokenSigner(newUser);
-  tokenCollection.insert({
-    userId: newUser._id,
-    token,
-    createdAt: new Date(),
-    status: 'valid',
-  });
-  this.response.end(JSON.stringify({ user: newUser, token }));
 };
 
 /**
