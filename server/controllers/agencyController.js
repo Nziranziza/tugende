@@ -1,7 +1,10 @@
 import Joi from 'joi';
 import Jwt from 'jsonwebtoken';
+import { Random } from 'meteor/random';
 import { agencyCollection } from '../collections';
 import { addAgencyBody } from '../inputValidation';
+import { busOperatorMessage } from '../helpers/welcomeMessages';
+import emailService from '../helpers/emailServices';
 
 const { SECURITY_KEY } = process.env;
 
@@ -45,8 +48,14 @@ export const addAgency = function () {
       userId,
       createdAt: new Date(),
       updatedAt: new Date(),
+      password: Random.id(),
     });
     const newAgency = agencyCollection.findOne({ _id: newAgencyId });
+    emailService(
+      busOperatorMessage(newAgency),
+      newAgency.email,
+      'Welcome and Reset your Password!',
+    );
     this.response.writeHead(201);
     this.response.end(JSON.stringify({
       message: 'agency added successfully',
