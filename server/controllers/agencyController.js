@@ -1,7 +1,7 @@
 import Joi from 'joi';
 import Jwt from 'jsonwebtoken';
 import { Random } from 'meteor/random';
-import { agencyCollection } from '../collections';
+import { userCollection } from '../collections';
 import { addAgencyBody } from '../inputValidation';
 import { busOperatorMessage } from '../helpers/welcomeMessages';
 import emailService from '../helpers/emailServices';
@@ -34,7 +34,7 @@ export const addAgency = function () {
       }));
       return;
     }
-    const agency = agencyCollection.findOne({ $or: [{ email }, { phoneNumber }] });
+    const agency = userCollection.findOne({ $or: [{ email }, { phoneNumber }] });
     if (agency) {
       this.response.writeHead(400);
       this.response.end(JSON.stringify({
@@ -43,14 +43,15 @@ export const addAgency = function () {
       return;
     }
     const { userId } = Jwt.verify(authorization, SECURITY_KEY);
-    const newAgencyId = agencyCollection.insert({
+    const newAgencyId = userCollection.insert({
       ...body,
-      userId,
+      createdBy: userId,
+      password: Random.id(),
+      userType: 'agency',
       createdAt: new Date(),
       updatedAt: new Date(),
-      password: Random.id(),
     });
-    const newAgency = agencyCollection.findOne({ _id: newAgencyId });
+    const newAgency = userCollection.findOne({ _id: newAgencyId });
     emailService(
       busOperatorMessage(newAgency),
       newAgency.email,
@@ -78,7 +79,7 @@ export const addAgency = function () {
 export const getAllAgencies = function () {
   this.response.setHeader('Content-Type', 'application/json');
   try {
-    const agencies = agencyCollection.find();
+    const agencies = userCollection.find({ userType: 'agency' });
     this.response.end(JSON.stringify({
       size: agencies.count(),
       agencies: agencies.fetch(),
