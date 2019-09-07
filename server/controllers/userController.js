@@ -112,9 +112,7 @@ export const postUser = async function() {
       createdAt: new Date(),
       updatedAt: new Date(),
     });
-    this.response.writeHead(201);
     const newUser = userCollection.findOne({ _id: newId });
-    emailService(userMessage(username), email, 'Verify your email');
     const token = jwtTokenSigner(newUser);
     tokenCollection.insert({
       userId: newUser._id,
@@ -122,8 +120,13 @@ export const postUser = async function() {
       createdAt: new Date(),
       status: 'valid',
     });
+    emailService(userMessage(username), email, 'Verify your email');
     this.response.writeHead(201);
-    this.response.end(JSON.stringify({ user: newUser, token }));
+    this.response.end(JSON.stringify({
+      message: 'Account created. Please verify your email!',
+      user: newUser,
+      token,
+    }));
     return;
   } catch (err) {
     this.response.end(JSON.stringify({
