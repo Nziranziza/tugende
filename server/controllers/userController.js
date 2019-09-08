@@ -166,6 +166,13 @@ export const login = async function () {
     }));
     return;
   }
+  if (user && user.firstLogin && user.password === password) {
+    this.response.writeHead(200);
+    this.response.end(JSON.stringify({
+      message: 'Reset your password',
+    }));
+    return;
+  }
   const isValidPassword = await bcrypt.compare(password, user.password);
   if (!isValidPassword) {
     this.response.writeHead(404);
