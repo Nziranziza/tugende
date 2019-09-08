@@ -19,6 +19,10 @@ import {
   getAllAgencies,
 } from '../controllers/agencyController';
 
+import {
+  resetDefaultPassword,
+} from '../controllers/authController';
+
 if (Meteor.isServer) {
   Router.route('/users', { where: 'server' })
     .get(getUsers)
@@ -42,4 +46,7 @@ if (Meteor.isServer) {
   Router.route('/agencies', { where: 'server' })
     .post(addAgency)
     .get(getAllAgencies);
+
+  Router.route('/reset-default-password', { where: 'server' })
+    .put(resetDefaultPassword);
 }

@@ -48,6 +48,7 @@ export const addAgency = function () {
       createdBy: userId,
       password: Random.id(),
       userType: 'agency',
+      firstLogin: true,
       createdAt: new Date(),
       updatedAt: new Date(),
     });

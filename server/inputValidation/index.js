@@ -52,3 +52,10 @@ export const addAgencyBody = Joi.object()
     phoneNumber: Joi.string().required(),
     email: Joi.string().email().required(),
   });
+
+export const resetDefaultPasswordBody = Joi.object()
+  .keys({
+    oldPassword: Joi.string().required(),
+    newPassword: Joi.string().min(6).required(),
+    username: Joi.string().required(),
+  });
