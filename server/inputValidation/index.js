@@ -18,6 +18,16 @@ export const createUser = Joi.object()
       .required(),
   });
 
+export const updateUserBody = Joi.object()
+  .keys({
+    firstName: Joi.string()
+      .trim(),
+    lastName: Joi.string().trim(),
+    sex: Joi.string().trim(),
+    dateOfBirth: Joi.date(),
+    residence: Joi.string().trim(),
+  });
+
 export const loginBody = Joi.object()
   .keys({
     username: Joi.string().required()

@@ -2,7 +2,7 @@ import Joi from 'joi';
 import bcrypt from 'bcrypt';
 import Jwt from 'jsonwebtoken';
 import { userCollection, tokenCollection } from '../collections';
-import { createUser, loginBody } from '../inputValidation';
+import { createUser, loginBody, updateUserBody } from '../inputValidation';
 import jwtTokenSigner from '../helpers/jwtTokenSigner';
 import emailService from '../helpers/emailServices';
 import { userMessage } from '../helpers/welcomeMessages';
@@ -191,5 +191,52 @@ export const login = async function () {
     });
     this.response.writeHead(200);
     this.response.end(JSON.stringify({ user: userData, token }));
+  }
+};
+/**
+ * @author Daniel
+ * @description update user profile
+ *              accessible by loggedIn user and admin
+ */
+export const updateUser = async function () {
+  const { body } = this.request;
+  const { id } = this.params;
+  this.response.setHeader('Content-Type', 'application/json');
+  try {
+    const { authorization } = this.request.headers;
+    const { userId, userType } = Jwt.verify(authorization, SECURITY_KEY);
+    if (userType !== 'admin' && id !== userId) {
+      this.response.writeHead(401);
+      this.response.end(JSON.stringify({
+        message: 'not authorized',
+      }));
+      return;
+    }
+    const user = userCollection.findOne({ _id: id });
+    if (!user) {
+      this.response.writeHead(404);
+      this.response.end(JSON.stringify({
+        message: 'user not found',
+      }));
+      return;
+    }
+    const { error } = Joi.validate({ ...body }, updateUserBody);
+    if (error) {
+      this.response.writeHead(400);
+      this.response.end(JSON.stringify(error));
+      return;
+    }
+    userCollection.update({ _id: id }, { $set: { ...body, updatedAt: new Date() } });
+    const { password, ...updatedUser } = userCollection.findOne({ _id: user._id });
+    this.response.writeHead(200);
+    this.response.end(JSON.stringify({
+      message: 'user updated',
+      user: updatedUser,
+    }));
+  } catch (error) {
+    this.response.writeHead(401);
+    this.response.end(JSON.stringify({
+      message: 'not authorized',
+    }));
   }
 };

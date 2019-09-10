@@ -5,6 +5,7 @@ import {
   getUser,
   postUser,
   login,
+  updateUser,
 } from '../controllers/userController';
 import {
   createTicket,
@@ -29,7 +30,8 @@ if (Meteor.isServer) {
     .post(postUser);
 
   Router.route('/users/:id', { where: 'server' })
-    .get(getUser);
+    .get(getUser)
+    .put(updateUser);
 
   Router.route('/users/login', { where: 'server' })
     .post(login);
