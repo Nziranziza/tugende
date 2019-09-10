@@ -9,41 +9,48 @@ import { resetDefaultPasswordBody } from '../inputValidation';
 export const resetDefaultPassword = async function () {
   const { body } = this.request;
   this.response.setHeader('Content-Type', 'application/json');
-  const { error } = Joi.validate({ ...body }, resetDefaultPasswordBody);
-  if (error) {
-    this.response.writeHead(400);
+  try {
+    const { error } = Joi.validate({ ...body }, resetDefaultPasswordBody);
+    if (error) {
+      this.response.writeHead(400);
+      this.response.end(JSON.stringify({
+        message: 'Bad request',
+        error,
+      }));
+      return;
+    }
+    const { oldPassword, username, newPassword } = body;
+    const user = userCollection.findOne(
+      {
+        $or: [{ email: username },
+          { phoneNumber: username },
+          { password: oldPassword },
+          { username }],
+      },
+    );
+    if (!user) {
+      this.response.writeHead(404);
+      this.response.end(JSON.stringify({
+        message: 'user not found',
+      }));
+      return;
+    }
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    userCollection.update({ _id: user._id }, {
+      $set: {
+        firstLogin: false,
+        password: hashedPassword,
+        updatedAt: new Date(),
+      },
+    });
+    this.response.writeHead(200);
     this.response.end(JSON.stringify({
-      message: 'Bad request',
-      error,
+      message: 'Password reset successfully!!!',
     }));
-    return;
-  }
-  const { oldPassword, username, newPassword } = body;
-  const user = userCollection.findOne(
-    {
-      $or: [{ email: username },
-        { phoneNumber: username },
-        { password: oldPassword },
-        { username }],
-    },
-  );
-  if (!user) {
-    this.response.writeHead(404);
+  } catch (err) {
     this.response.end(JSON.stringify({
-      message: 'user not found',
+      message: 'something went wrong',
+      error: err,
     }));
-    return;
   }
-  const hashedPassword = await bcrypt.hash(newPassword, 10);
-  userCollection.update({ _id: user._id }, {
-    $set: {
-      firstLogin: false,
-      password: hashedPassword,
-      updatedAt: new Date(),
-    },
-  });
-  this.response.writeHead(200);
-  this.response.end(JSON.stringify({
-    message: 'Password reset successfully!!!',
-  }));
 };
