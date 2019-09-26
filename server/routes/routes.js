@@ -25,6 +25,10 @@ import {
   resetDefaultPassword,
 } from '../controllers/authController';
 
+import {
+  addBus,
+} from '../controllers/busController';
+
 if (Meteor.isServer) {
   Router.route('/users', { where: 'server' })
     .get(getUsers)
@@ -55,4 +59,7 @@ if (Meteor.isServer) {
 
   Router.route('/reset-default-password', { where: 'server' })
     .put(resetDefaultPassword);
+
+  Router.route('/add-bus', { where: 'server' })
+    .post(addBus);
 }
