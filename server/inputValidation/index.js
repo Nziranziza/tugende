@@ -69,3 +69,13 @@ export const resetDefaultPasswordBody = Joi.object()
     newPassword: Joi.string().min(6).required(),
     username: Joi.string().required(),
   });
+
+export const addBusBody = Joi.object()
+  .keys({
+    origin: Joi.string().required(),
+    destination: Joi.string().required(),
+    agency: Joi.string().required(),
+    fare: Joi.number().required(),
+    date: Joi.date().required(),
+    numberOfSeats: Joi.number().required(),
+  });
