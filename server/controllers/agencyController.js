@@ -93,3 +93,51 @@ export const getAllAgencies = function () {
     }));
   }
 };
+/**
+ * @author Daniel
+ *         delete agency
+ *         accessible by admin
+ * @returns a message
+ */
+export const deleteAgency = function () {
+  const { id } = this.params;
+  this.response.setHeader('Content-Type', 'application/json');
+  const { authorization } = this.request.headers;
+  if (!authorization) {
+    this.response.writeHead(401);
+    this.response.end(JSON.stringify({
+      message: 'not authorized',
+    }));
+    return;
+  }
+  try {
+    const { userType } = Jwt.verify(authorization, SECURITY_KEY);
+    if (userType !== 'admin') {
+      this.response.writeHead(401);
+      this.response.end(JSON.stringify({
+        message: 'not authorized',
+      }));
+      return;
+    }
+    const agency = userCollection.findOne({ _id: id });
+    if (!agency) {
+      this.response.writeHead(404);
+      this.response.end(JSON.stringify({
+        message: 'agency not found',
+      }));
+      return;
+    }
+    const { password, ...agencyInfo } = agency;
+    userCollection.remove({ _id: id }, { justOne: true });
+    this.response.writeHead(200);
+    this.response.end(JSON.stringify({
+      message: 'agency deleted',
+      agencyInfo,
+    }));
+  } catch (error) {
+    this.response.writeHead(500);
+    this.response.end(JSON.stringify({
+      message: 'something went wrong',
+    }));
+  }
+};

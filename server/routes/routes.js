@@ -18,6 +18,7 @@ import {
 import {
   addAgency,
   getAllAgencies,
+  deleteAgency,
 } from '../controllers/agencyController';
 
 import {
@@ -48,6 +49,9 @@ if (Meteor.isServer) {
   Router.route('/agencies', { where: 'server' })
     .post(addAgency)
     .get(getAllAgencies);
+
+  Router.route('/agencies/:id', { where: 'server' })
+    .delete(deleteAgency);
 
   Router.route('/reset-default-password', { where: 'server' })
     .put(resetDefaultPassword);
